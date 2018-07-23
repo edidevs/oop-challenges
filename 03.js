@@ -1,0 +1,14 @@
+/*
+Log class
+
+
+*/
+
+class Log{
+
+    
+
+
+
+
+}
