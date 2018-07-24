@@ -112,10 +112,36 @@ Cart.prototype.showAll = function(){
 
 };
 
+Cart.prototype.checkout = function(){
+
+    var fs = require('fs');
+    var stream = fs.createWriteStream("cart.txt");
+    let self = this; 
+    stream.once('open', function(fd) {
+        let item_id = "";
+        let price = 0; 
+        let qty = 0; 
+        for(let i = 0; i<self.obj.length; i++){
+
+            stream.write(`Item Id : ${self.obj[i].item_id}`);
+            stream.write(`Price : ${self.obj[i].price}`);
+            stream.write(`Quantity : ${self.obj[i].quantity}`); 
+            
+
+        }
+    stream.end();
+})
+
+};
+
 let cart = new Cart();
 console.log(cart.addItem({item_id:4, price:400, quantity:2}).addItem({item_id:5, price:500, quantity:3}).removeItem({item_id:4}).addItem({item_id:10, price:600, quantity:4}));
-
+console.log(cart.totalItems());
+console.log(cart.totalQuantity());
+console.log(cart.totalPrice());
 console.log(cart.showAll()); 
+console.log(cart.checkout());
+
 
 
 
