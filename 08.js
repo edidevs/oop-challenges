@@ -57,7 +57,14 @@ Cart.prototype.removeItem = function(arg){
 Cart.prototype.addDiscount = function(disc){
     
     this.discount = parseInt(disc.substr(0, disc.length-1));
-    this.totalPrice() = this.totalPrice() * (this.discount/100); 
+    
+
+    for(let i = 0; i<this.obj.length; i++){
+
+        this.obj[i].price = this.obj[i].price * (this.discount/100); 
+        
+
+    }
     return this; 
 
 }; 
@@ -136,7 +143,7 @@ Cart.prototype.checkout = function(){
 };
 
 let cart = new Cart();
-console.log(cart.addItem({item_id:4, price:400, quantity:2}).addItem({item_id:5, price:500, quantity:3}).removeItem({item_id:4}).addItem({item_id:10, price:600, quantity:4}));
+console.log(cart.addItem({item_id:4, price:400, quantity:2}).addItem({item_id:5, price:500, quantity:3}).removeItem({item_id:4}).addItem({item_id:10, price:600, quantity:4}).addDiscount("50%"));
 console.log(cart.totalItems());
 console.log(cart.totalQuantity());
 console.log(cart.totalPrice());
