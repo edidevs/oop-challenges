@@ -57,6 +57,7 @@ Cart.prototype.removeItem = function(arg){
 Cart.prototype.addDiscount = function(disc){
     
     this.discount = parseInt(disc.substr(0, disc.length-1));
+    this.totalPrice() = this.totalPrice() * (this.discount/100); 
     return this; 
 
 }; 
@@ -85,7 +86,7 @@ Cart.prototype.totalPrice = function(){
     let price = 0; 
     for(let i = 0; i<this.obj.length; i++){
 
-        price += parseInt(this.obj[i].price); 
+        price += (parseInt(this.obj[i].price) * this.obj[i].quantity); 
         
 
     }
